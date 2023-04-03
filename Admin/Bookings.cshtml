@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FlightReservationSystem.Models.Booking>
+
+<h1>Bookings</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.User!)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.NoOfSeats)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.FlightSchedule!.Source)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.FlightSchedule!.Destination)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Created)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Price)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Status)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.User!.FirstName) @Html.DisplayFor(modelItem => item.User!.LastName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.NoOfSeats)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.FlightSchedule!.Source)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.FlightSchedule!.Destination)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Price) /-
+				</td>
+				<th>
+					@Html.DisplayNameFor(model => model.Created)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Status)
+				</th>
+			</tr>
+		}
+	</tbody>
+</table>

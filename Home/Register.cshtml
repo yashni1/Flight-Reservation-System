@@ -1,0 +1,56 @@
+﻿@model FlightReservationSystem.Models.User;
+
+<div class="row">
+	<div class="col">
+		@{
+			if (ViewData["error"] != null)
+			{
+				<div class="alert alert-danger" role="alert">@ViewData["error"]</div>
+			}
+			if (ViewData["msg"] != null)
+			{
+				<div class="alert alert-success" role="alert">@ViewData["msg"]</div>
+			}
+		}
+		<form asp-action="Register" method="post">
+			<div class="card border-primary">
+				<h1 class="card-header display-5">Register</h1>
+				<div class="card-body">
+					<div class="form-group">
+						<div class="row">
+							<div class="col">
+								<input asp-for="FirstName" type="text" class="form-control" placeholder="FirstName" required />
+							</div>
+							<div class="col">
+								<input asp-for="LastName" type="text" class="form-control" placeholder="LastName" required />
+							</div>
+						</div>
+						<div class="row mt-2">
+							<div class="col">
+								<input asp-for="Age" type="number" class="form-control" placeholder="Age" required />
+							</div>
+							<div class="col">
+								<select asp-for="Gender" class="form-select" required>
+									<option selected>Select Gender</option>
+									<option value="MALE">MALE</option>
+									<option value="FEMALE">FEMALE</option>
+								</select>
+							</div>
+						</div>
+						<input asp-for="Phone" type="number" class="form-control mt-2" placeholder="Phone" required />
+						<input asp-for="Email" type="email" class="form-control mt-2" placeholder="Email" required />
+						<input asp-for="Password" class="form-control mt-2" type="password" placeholder="Password" required />
+						<input asp-for="Dob" class="form-control mt-2" type="date" required />
+						<textarea class="form-control mt-2" rows="3" cols="3" asp-for="Address" required placeholder="Address"></textarea>
+						<div class="text-center">
+							<button type="submit" class="btn btn-primary mt-2 w-50">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="col-8">
+		<img class="card-img-top" src="https://semidotinfotech.com/blog/wp-content/uploads/2021/07/Flight-Ticket-Booking-App-Development-Cost-Features1.jpg" />
+	</div>
+</div>

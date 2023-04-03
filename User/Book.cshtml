@@ -1,0 +1,55 @@
+﻿@model FlightReservationSystem.Models.FlightSchedule
+
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="display-6">Booking</h1>
+
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="AddBook">
+			<div class="form-group">
+				<label class="control-label">Price</label>
+				<input class="form-control" required name="Price" type="number" readonly id="price" />
+			</div>
+			<input type="hidden" value="@Model.Id" name="ScheduleId" />
+			<div class="form-group">
+				<label class="control-label">NumberOfSeats</label>
+				<input name="NoOfSeats" class="form-control" required type="number" id="seats" />
+			</div>
+			<div class="form-group">
+				<label class="control-label">CardHolderName</label>
+				<input class="form-control" required name="CardHolderName" placeholder="CardHolderName" type="text" />
+			</div>
+			<div class="form-group">
+				<label class="control-label">CardNumber</label>
+				<input name="CardNumber" class="form-control" required placeholder="CardNumber" type="number" />
+			</div>
+			<div class="form-group">
+				<label class="control-label">ExpiryDate</label>
+				<input name="ExpiryDate" class="form-control" required placeholder="ExpiryDate" type="date" />
+			</div>
+			<div class="form-group">
+				<label class="control-label">CVV</label>
+				<input class="form-control" required placeholder="CVV" type="number" />
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Create" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+	<script>
+		$('#seats').on('keyup', function (e) {
+			const price = parseInt(e.target.value) * @Model.Flight!.Price;
+			$('#price').val(price);
+		})
+	</script>
+}

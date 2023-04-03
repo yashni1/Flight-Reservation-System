@@ -1,0 +1,115 @@
+﻿@model IEnumerable<FlightReservationSystem.Models.FlightSchedule>
+
+<div class="row mb-3">
+	<div class="col-12">
+		@{
+			if (ViewData["msg"] != null)
+			{
+				<div class="alert alert-success" role="alert">@ViewData["msg"]</div>
+			}
+		}
+		<form asp-action="Search" method="post">
+			<div class="row">
+				<div class="col-4">
+					<select class="form-select" name="source" required>
+						<option selected>Select Source</option>
+						@{
+							foreach (var item in Model)
+							{
+								<option value="@item.Source">@item.Source</option>
+							}
+						}
+					</select>
+				</div>
+				<div class="col-4">
+					<select class="form-select" name="destination" required>
+						<option selected>Select Destination</option>
+						@{
+							foreach (var item in Model)
+							{
+								<option value="@item.Destination">@item.Destination</option>
+							}
+						}
+					</select>
+				</div>
+				<div class="col-4">
+					<button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+<div class="row">
+	@{
+		foreach (var item in Model)
+		{
+			<div class="col-4">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-5">
+								<div class="card-text">Flight</div>
+							</div>
+							<div class="col-7">
+								<div class="card-text">@item.Flight!.Name</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-5">
+								<div class="card-text">Capacity</div>
+							</div>
+							<div class="col-7">
+								<div class="card-text">@item.Flight!.ReservationCapacity</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-5">
+								<div class="card-text">Reservation Type</div>
+							</div>
+							<div class="col-7">
+								<div class="card-text">@item.Flight!.ReservationType</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-5">
+								<div class="card-text">Source</div>
+							</div>
+							<div class="col-7">
+								<div class="card-text">@item.Source</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-5">
+								<div class="card-text">Destination</div>
+							</div>
+							<div class="col-7">
+								<div class="card-text">@item.Destination</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-5">
+								<div class="card-text">ArrivalTime</div>
+							</div>
+							<div class="col-7">
+								<div class="card-text">@item.ArrivalTime</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-5">
+								<div class="card-text">DepatureTime</div>
+							</div>
+							<div class="col-7">
+								<div class="card-text">@item.DepartureTime</div>
+							</div>
+						</div>
+					</div>
+					<div class="text-center mb-2 ">
+						<a asp-action="Book" asp-route-id="@item.Id" class="btn btn-primary w-75">Book</a>
+					</div>
+				</div>
+			</div>
+		}
+	}
+</div>

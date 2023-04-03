@@ -1,0 +1,56 @@
+﻿@model IEnumerable<FlightReservationSystem.Models.Flight>
+
+@{
+	ViewData["Title"] = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Create</h1>
+<h4>FlightSchedule</h4>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Create">
+			<div class="form-group">
+				<label class="control-label">Select Flight To Schedule</label>
+				<select class="form-select" required name="FlightId">
+					<option selected>Select Flight To Schedule</option>
+					@{
+						foreach (var f in Model)
+						{
+							<option value="@f.Id">@f.Name</option>
+						}
+					}
+				</select>
+			</div>
+			<div class="form-group">
+				<label class="control-label">ArrivalTime</label>
+				<input class="form-control" required name="ArrivalTime" type="datetime-local" />
+			</div>
+			<div class="form-group">
+				<label class="control-label">DepatureTime</label>
+				<input class="form-control" required name="DepatureTime" type="datetime-local" />
+			</div>
+			<div class="form-group">
+				<label class="control-label">Source</label>
+				<input class="form-control" required name="Source" type="text" />
+			</div>
+			<div class="form-group">
+				<label class="control-label">Destination</label>
+				<input class="form-control" required name="Destination" type="text" />
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Create" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
